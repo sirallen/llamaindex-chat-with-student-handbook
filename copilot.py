@@ -31,10 +31,8 @@ class Copilot:
         self.retriever = self.index.as_retriever(
                         similarity_top_k=3
                         )
-        
         self.system_prompt = """
-            You are an expert on Columbia University and your job is to answer questions 
-            about the university.
+            Your job is to make legislative bills more accessible to readers by answering questions about a bill.
         """
 
     def ask(self, question, messages, openai_key=None):
@@ -52,8 +50,7 @@ class Copilot:
 
             The retrived information is: {retrieved_info}
 
-            Please answer the question based on the retrieved information. If the question is not related to Columbia University, 
-            please tell the user and ask for a question related to Columbia University.
+            Please answer the question based on the retrieved information. If the question is not related to the bill or cannot be answered, then say you don't know.
 
             Please highlight the information with bold text and bullet points.
         """
